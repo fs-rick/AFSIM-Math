@@ -1,0 +1,75 @@
+#UNCLASSIFIED
+
+$define CASENAME test-normal-CDF
+
+define_path_variable CASE $<CASENAME:define_CASENAME_you_idiot>$
+
+log_file $(CASE).log
+
+include_once math/normal-CDF.txt
+
+execute at_time 1 sec absolute
+# This is for your convenience, in case you want to write the tests to a file.
+# Just uncomment, and write what you want.
+#   FileIO testOut = FileIO();
+#   testOut.Open("$<CASENAME:AAA>$.txt", "out");
+#   testOut.Writeln(write_str("pnorm(0,0,1) = ", pnorm(0.0, 0.0, 1.0)));
+#   testOut.Close();
+
+    # These are the pnorm(x,0.1) values from R.
+    Array<double> pnormZ = Array<double>();
+    Array<double> pnormZ_neg = Array<double>();
+    pnormZ_neg[20] = 0.02275013;
+    pnormZ_neg[19] = 0.02871656;
+    pnormZ_neg[18] = 0.03593032;
+    pnormZ_neg[17] = 0.04456546;
+    pnormZ_neg[16] = 0.05479929;
+    pnormZ_neg[15] = 0.06680720;
+    pnormZ_neg[14] = 0.08075666;
+    pnormZ_neg[13] = 0.09680048;
+    pnormZ_neg[12] = 0.11506967;
+    pnormZ_neg[11] = 0.13566606;
+    pnormZ_neg[10] = 0.15865525;
+    pnormZ_neg[9] = 0.18406013;
+    pnormZ_neg[8] = 0.21185540;
+    pnormZ_neg[7] = 0.24196365;
+    pnormZ_neg[6] = 0.27425312;
+    pnormZ_neg[5] = 0.30853754;
+    pnormZ_neg[4] = 0.34457826;
+    pnormZ_neg[3] = 0.38208858;
+    pnormZ_neg[2] = 0.42074029;
+    pnormZ_neg[1] = 0.46017216;
+    pnormZ[0] = 0.5000000;
+    pnormZ[1] = 0.5398278;
+    pnormZ[2] = 0.5792597;
+    pnormZ[3] = 0.6179114;
+    pnormZ[4] = 0.6554217;
+    pnormZ[5] = 0.6914625;
+    pnormZ[6] = 0.7257469;
+    pnormZ[7] = 0.7580363;
+    pnormZ[8] = 0.7881446;
+    pnormZ[9] = 0.8159399;
+    pnormZ[10] = 0.8413447;
+    pnormZ[11] = 0.8643339;
+    pnormZ[12] = 0.8849303;
+    pnormZ[13] = 0.9031995;
+    pnormZ[14] = 0.9192433;
+    pnormZ[15] = 0.9331928;
+    pnormZ[16] = 0.9452007;
+    pnormZ[17] = 0.9554345;
+    pnormZ[18] = 0.9640697;
+    pnormZ[19] = 0.9712834;
+    pnormZ[20] = 0.9772499;
+
+    for(int i=20; i>=1; i-=1) {
+        double x = -i/10.0;
+        writeln(x, "  ", pnorm(x, 0.0, 1.0), "  ", pnormZ_neg[i]);
+    }
+    for(int i=0; i<=20; i+=1) {
+        double x = i/10.0;
+        writeln(x, "  ", pnorm(x, 0.0, 1.0), "  ", pnormZ[i]);
+    }
+end_execute
+
+end_time 42 secs  // Why 42? Because it's awesome.
+
