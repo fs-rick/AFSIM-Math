@@ -12,7 +12,7 @@ execute at_time 1 sec absolute
 # This is for your convenience, in case you want to write the tests to a file.
 # Just uncomment, and write what you want.
 #   FileIO testOut = FileIO();
-#   testOut.Open("$<CASENAME:AAA>$.txt", "out");
+#   testOut.Open("$<CASENAME:AAA>$_output.txt", "out");
 #   testOut.Writeln(write_str("pnorm(0,0,1) = ", pnorm(0.0, 0.0, 1.0)));
 #   testOut.Close();
 
